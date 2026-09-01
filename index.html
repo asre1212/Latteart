@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<title>Latte Motion — pitcher guide for latte art</title>
+<meta name="description" content="A timed, step-by-step pitcher-motion guide for 10 classic latte art designs. Start the timer, hold your pitcher over the screen and follow the target.">
+<meta name="theme-color" content="#171210">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icons/favicon.png" sizes="any">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Latte Motion">
+<link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button class="icon-btn" id="backBtn" aria-label="Back" hidden>‹</button>
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">Latte&nbsp;Motion</span>
+    <span class="brand-ver" id="verChip">v–</span>
+  </div>
+  <button class="icon-btn" id="settingsBtn" aria-label="Settings">⚙</button>
+</header>
+
+<main id="main">
+
+  <!-- ---------------- HOME ---------------- -->
+  <section class="screen" id="screen-home">
+    <div class="hero">
+      <h1>Pour by the clock.</h1>
+      <p>Ten classic designs, each broken into the exact pitcher moves over time — when to hold a straight line, when to zigzag, when to lift and pull through. Start the timer, hold your pitcher over the phone and follow the target.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="foot-note">
+      <p><strong>Milk first.</strong> None of this works without properly textured milk: wet paint, no visible bubbles, poured within 20 seconds of steaming. Every timing here assumes a 5–6 oz cup with a double shot.</p>
+    </div>
+  </section>
+
+  <!-- ---------------- DETAIL ---------------- -->
+  <section class="screen hidden" id="screen-detail">
+    <div class="detail-head">
+      <div class="detail-preview"><canvas id="detailCanvas"></canvas></div>
+      <div class="detail-meta">
+        <p class="family" id="dFamily"></p>
+        <h1 id="dName"></h1>
+        <p class="tagline" id="dTagline"></p>
+        <div class="meta-row">
+          <span class="pill" id="dDifficulty"></span>
+          <span class="pill" id="dTime"></span>
+          <span class="pill" id="dSteps"></span>
+        </div>
+      </div>
+    </div>
+
+    <p class="about" id="dAbout"></p>
+
+    <section class="block">
+      <h2>Motion over time</h2>
+      <p class="block-sub">Bright line = side&#8209;to&#8209;side position. Dim line = how far the pitcher is from you. Flat means hold steady; a saw&#8209;tooth means zigzag.</p>
+      <div class="map-wrap"><canvas id="mapCanvas"></canvas></div>
+      <div class="legend" id="dLegend"></div>
+    </section>
+
+    <section class="block">
+      <h2>The pour, step by step</h2>
+      <ol class="steps" id="dSteps2"></ol>
+    </section>
+
+    <section class="block">
+      <h2>Watch out for</h2>
+      <ul class="tips" id="dTips"></ul>
+    </section>
+
+    <div class="sticky-cta">
+      <button class="primary" id="startBtn">Start guided pour</button>
+    </div>
+  </section>
+
+  <!-- ---------------- GUIDE ---------------- -->
+  <section class="screen guide hidden" id="screen-guide">
+    <div class="cue">
+      <div class="cue-top">
+        <span class="motion-chip" id="cueChip">–</span>
+        <span class="cue-clock"><b id="cuePhaseLeft">0.0</b>s in this step</span>
+        <span class="cue-total" id="cueTotal">0.0 / 0.0s</span>
+      </div>
+      <h2 id="cueLabel">Get ready</h2>
+      <p id="cueDetail">Pitcher in hand, cup tilted.</p>
+    </div>
+
+    <div class="stage" id="stage">
+      <canvas id="guideCanvas"></canvas>
+
+      <div class="gauge gauge-left">
+        <span class="gauge-cap">HEIGHT</span>
+        <div class="bar"><i id="heightFill"></i><b id="heightMark"></b></div>
+        <span class="gauge-val" id="heightVal">–</span>
+      </div>
+
+      <div class="gauge gauge-right">
+        <span class="gauge-cap">FLOW</span>
+        <div class="bar"><i id="flowFill"></i></div>
+        <span class="gauge-val" id="flowVal">–</span>
+      </div>
+
+      <div class="tiltbox">
+        <span class="gauge-cap">CUP TILT</span>
+        <svg viewBox="0 0 60 44" class="tiltcup" aria-hidden="true">
+          <g id="tiltGroup">
+            <path d="M8 6 L46 6 L40 34 L14 34 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+            <path id="tiltMilk" d="M12 22 L42 22 L40 34 L14 34 Z" fill="currentColor" opacity="0.35"/>
+          </g>
+        </svg>
+        <span class="gauge-val" id="tiltVal">–</span>
+      </div>
+
+      <div class="beat" id="beat"><span></span><span></span><span></span></div>
+
+      <div class="countdown hidden" id="countdown"><span id="countNum">3</span><em id="countSub">Get the pitcher over the cup</em></div>
+      <div class="finished hidden" id="finished">
+        <h3>Pour complete</h3>
+        <p id="finishedText">Nice. Compare what is in the cup with the target.</p>
+        <div class="finished-actions">
+          <button class="ghost" id="againBtn">Pour again</button>
+          <button class="primary" id="doneBtn">Back to designs</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="strip">
+      <canvas id="stripCanvas"></canvas>
+      <div class="next-up" id="nextUp"></div>
+    </div>
+
+    <div class="controls">
+      <button class="ghost" id="exitBtn">Exit</button>
+      <button class="ghost" id="restartBtn">Restart</button>
+      <button class="primary wide" id="playBtn">Pause</button>
+      <button class="ghost" id="speedBtn">1×</button>
+    </div>
+  </section>
+</main>
+
+<!-- ---------------- SETTINGS ---------------- -->
+<div class="sheet-backdrop hidden" id="sheetBackdrop"></div>
+<aside class="sheet hidden" id="settingsSheet" role="dialog" aria-label="Settings">
+  <div class="sheet-head"><h2>Settings</h2><button class="icon-btn" id="closeSheet" aria-label="Close">✕</button></div>
+  <label class="row"><span>Sound cues</span><input type="checkbox" id="optSound"></label>
+  <label class="row"><span>Spoken instructions</span><input type="checkbox" id="optVoice"></label>
+  <label class="row"><span>Vibrate on step change</span><input type="checkbox" id="optHaptics"></label>
+  <label class="row"><span>Keep screen awake</span><input type="checkbox" id="optWake"></label>
+  <label class="row"><span>Practice speed</span>
+    <select id="optSpeed">
+      <option value="0.6">0.6× — learning</option>
+      <option value="0.8">0.8×</option>
+      <option value="1" selected>1× — real time</option>
+      <option value="1.25">1.25×</option>
+    </select>
+  </label>
+  <div class="row stack">
+    <span>Countdown before pouring</span>
+    <select id="optCountdown">
+      <option value="3">3 seconds</option>
+      <option value="5">5 seconds</option>
+      <option value="8">8 seconds</option>
+    </select>
+  </div>
+  <div class="sheet-foot">
+    <button class="ghost" id="installBtn" hidden>Install app</button>
+    <button class="ghost" id="updateBtn">Check for updates</button>
+    <p class="version-line">Latte Motion <span id="verText">v–</span> · works offline</p>
+  </div>
+</aside>
+
+<div class="toast hidden" id="toast"><span id="toastText"></span><button id="toastAction" hidden></button></div>
+
+<script src="./js/version.js"></script>
+<script src="./js/designs.js"></script>
+<script src="./js/pattern.js"></script>
+<script src="./js/engine.js"></script>
+<script src="./js/audio.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
