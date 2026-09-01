@@ -10,7 +10,7 @@
   "orientation": "any",
   "background_color": "#120e0c",
   "theme_color": "#171210",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "categories": ["food", "education", "lifestyle"],
   "icons": [
     { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
