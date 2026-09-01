@@ -79,4 +79,15 @@ caches under the new version name, drops the old cache, and the app shows a **Re
 anyone with the old build open. Always bump the version when you change app files — otherwise
 installed copies keep serving the cached build.
 
-Pushing to `main` publishes to GitHub Pages via `.github/workflows/pages.yml`.
+## Hosting on GitHub Pages
+
+`.github/workflows/pages.yml` publishes `main` on every push.
+
+One manual step is needed the first time: **Settings → Pages → Build and deployment → Source:
+GitHub Actions**. The workflow asks `configure-pages` to enable Pages itself, but creating a Pages
+site needs admin rights that the workflow token does not have, so the first run fails with
+`Create Pages site failed: Resource not accessible by integration` until the switch is flipped by
+hand. After that, re-run the workflow (Actions → Deploy to GitHub Pages → Run workflow) and the
+site goes live at `https://<user>.github.io/Latteart/`.
+
+The app uses relative paths throughout, so it works from a project subpath without changes.
