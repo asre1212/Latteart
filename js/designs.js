@@ -191,7 +191,7 @@ DESIGNS.push({
       height: [1, 4], flow: [0.5, 0.2], tilt: [0, 0],
       paint: [
         { id: 'h', k: 'heart', x: 0, y: 0.04, r: 0.8 },
-        { id: 'stem', k: 'stroke', pts: [[0, 0.5], [0, -0.7]], w: 0.055 }
+        { id: 'stem', k: 'stroke', pts: [[0, 0.5], [0, -0.7]], taper: [0.06, 0.028] }
       ]
     },
     STOP
@@ -257,7 +257,7 @@ DESIGNS.push({
         { id: 'r1', k: 'heart', x: 0, y: 0.04, r: 0.8 },
         { id: 'r2', k: 'heart', x: 0, y: 0.02, r: 0.56, edge: true },
         { id: 'r3', k: 'heart', x: 0, y: 0, r: 0.32, edge: true },
-        { id: 'stem', k: 'stroke', pts: [[0, 0.55], [0, -0.72]], w: 0.05 }
+        { id: 'stem', k: 'stroke', pts: [[0, 0.55], [0, -0.72]], taper: [0.055, 0.025] }
       ]
     },
     STOP
@@ -307,7 +307,7 @@ DESIGNS.push({
         ms: 2000,
         paint: [
           { id: 't0', k: 'heart', x: 0, y: -0.5, r: 0.26 },
-          { id: 'stem', k: 'stroke', pts: [[0, 0.58], [0, -0.72]], w: 0.045 }
+          { id: 'stem', k: 'stroke', pts: [[0, 0.58], [0, -0.72]], taper: [0.05, 0.022] }
         ]
       }),
       STOP
@@ -358,7 +358,7 @@ DESIGNS.push({
       ms: 2100, motion: 'drag',
       path: { from: { x: 0, y: 0.55 }, to: { x: 0, y: -0.74 } },
       height: [1, 4], flow: [0.5, 0.18], tilt: [0, 0],
-      paint: [{ id: 'stem', k: 'stroke', pts: [[0, 0.55], [0, -0.72]], w: 0.05 }]
+      paint: [{ id: 'stem', k: 'stroke', pts: [[0, 0.55], [0, -0.72]], taper: [0.055, 0.025] }]
     },
     STOP
   ])
@@ -390,7 +390,7 @@ DESIGNS.push({
       path: { from: { x: 0, y: 0.4 }, to: { x: 0, y: -0.36 } },
       wiggle: { amp: 0.26, hz: 5.5 },
       height: [1, 1], flow: [0.9, 0.86], tilt: [22, 0],
-      paint: [{ id: 'ros', k: 'rosetta', from: { x: 0, y: 0.44 }, to: { x: 0, y: -0.4 }, w: 1.5, leaves: 9 }]
+      paint: [{ id: 'ros', k: 'rosetta', from: { x: 0, y: 0.44 }, to: { x: 0, y: -0.4 }, w: 1.5, leaves: 9, prof: 'reverse' }]
     },
     {
       label: 'Lift & cut back towards you',
@@ -398,7 +398,7 @@ DESIGNS.push({
       ms: 2100, motion: 'drag',
       path: { from: { x: 0, y: -0.6 }, to: { x: 0, y: 0.7 } },
       height: [1, 4], flow: [0.5, 0.18], tilt: [0, 0],
-      paint: [{ id: 'stem', k: 'stroke', pts: [[0, -0.6], [0, 0.68]], w: 0.05 }]
+      paint: [{ id: 'stem', k: 'stroke', pts: [[0, -0.6], [0, 0.68]], taper: [0.055, 0.025] }]
     },
     STOP
   ])
@@ -449,7 +449,7 @@ DESIGNS.push({
       height: [1, 4], flow: [0.5, 0.18], tilt: [0, 0],
       paint: [
         { id: 'wvh', k: 'heart', x: 0, y: 0, r: 0.92, z: -1 },
-        { id: 'stem', k: 'stroke', pts: [[0, 0.6], [0, -0.72]], w: 0.05 }
+        { id: 'stem', k: 'stroke', pts: [[0, 0.6], [0, -0.72]], taper: [0.055, 0.025] }
       ]
     },
     STOP
@@ -521,7 +521,7 @@ DESIGNS.push({
       ms: 2000,
       detail: 'Thin stream, one straight line from the near rim, through both blobs, through the rosetta, out over the far side.',
       from: { x: 0, y: 0.62 }, to: { x: 0, y: -0.74 },
-      paint: [{ id: 'stem', k: 'stroke', pts: [[0, 0.62], [0, -0.72]], w: 0.05 }]
+      paint: [{ id: 'stem', k: 'stroke', pts: [[0, 0.62], [0, -0.72]], taper: [0.055, 0.025] }]
     }),
     STOP
   ])
@@ -544,7 +544,7 @@ DESIGNS.push({
       ms: 1500, motion: 'hold',
       path: { from: { x: 0, y: -0.24 }, to: { x: -0.5, y: -0.3 } },
       height: [1.4, 1], flow: [0.86, 0.9], tilt: [28, 24],
-      paint: [{ id: 'anchor', k: 'blob', x: -0.5, y: -0.32, r: 0.22 }]
+      paint: [{ id: 'anchor', k: 'blob', x: -0.44, y: -0.34, r: 0.18 }]
     },
     {
       label: 'Wiggle along a curve — the wing',
@@ -553,7 +553,7 @@ DESIGNS.push({
       path: { from: { x: -0.5, y: -0.3 }, to: { x: 0.02, y: 0.34 }, ctrl: { x: -0.66, y: 0.26 } },
       wiggle: { amp: 0.17, hz: 6.5 },
       height: [1, 1], flow: [0.9, 0.88], tilt: [24, 4],
-      paint: [{ id: 'wing', k: 'rosetta', from: { x: -0.52, y: -0.3 }, to: { x: 0.0, y: 0.34 }, ctrl: { x: -0.72, y: 0.24 }, w: 1.0, leaves: 12 }]
+      paint: [{ id: 'wing', k: 'rosetta', from: { x: -0.46, y: -0.34 }, to: { x: -0.06, y: 0.3 }, ctrl: { x: -0.66, y: 0.14 }, w: 0.82, leaves: 12, prof: 'mid' }]
     },
     {
       label: 'Body — hold still',
@@ -561,7 +561,7 @@ DESIGNS.push({
       ms: 1800, motion: 'hold',
       path: { from: { x: 0.02, y: 0.34 }, to: { x: 0.06, y: 0.4 } },
       height: [1, 1], flow: [0.88, 0.86], tilt: [4, 0],
-      paint: [{ id: 'body', k: 'blob', x: 0.06, y: 0.3, r: 0.4 }]
+      paint: [{ id: 'body', k: 'blob', x: 0.06, y: 0.27, r: 0.42 }]
     },
     {
       label: 'Cut through the wing',
@@ -569,7 +569,7 @@ DESIGNS.push({
       ms: 1600, motion: 'drag',
       path: { from: { x: 0.1, y: 0.5 }, to: { x: -0.56, y: -0.42 } },
       height: [1, 3.5], flow: [0.45, 0.2], tilt: [0, 0],
-      paint: [{ id: 'wcut', k: 'stroke', pts: [[0.1, 0.5], [-0.54, -0.4]], w: 0.045 }]
+      paint: [{ id: 'wcut', k: 'stroke', pts: [[0.08, 0.36], [-0.44, -0.26]], taper: [0.05, 0.016] }]
     },
     {
       label: 'Neck — high, thin, slow S',
@@ -577,7 +577,7 @@ DESIGNS.push({
       ms: 2600, motion: 'curve',
       path: { from: { x: 0.12, y: 0.3 }, to: { x: 0.46, y: -0.44 }, ctrl: { x: 0.66, y: 0.12 } },
       height: [4, 4], flow: [0.14, 0.12], tilt: [0, 0],
-      paint: [{ id: 'neck', k: 'stroke', pts: [[0.12, 0.3], [0.66, 0.12], [0.46, -0.44]], w: 0.035, curve: true }]
+      paint: [{ id: 'neck', k: 'stroke', pts: [[0.1, 0.26], [0.66, 0.12], [0.45, -0.44]], taper: [0.11, 0.03], curve: true }]
     },
     {
       label: 'Head & beak',
@@ -587,7 +587,7 @@ DESIGNS.push({
       height: [4, 3], flow: [0.2, 0.1], tilt: [0, 0],
       paint: [
         { id: 'head', k: 'blob', x: 0.45, y: -0.46, r: 0.09 },
-        { id: 'beak', k: 'stroke', pts: [[0.42, -0.5], [0.26, -0.56]], w: 0.03 }
+        { id: 'beak', k: 'stroke', pts: [[0.42, -0.5], [0.24, -0.57]], taper: [0.045, 0.006] }
       ]
     },
     STOP

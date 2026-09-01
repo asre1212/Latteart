@@ -3,7 +3,7 @@
    BUILD_STAMP mirrors it so this file's bytes change on every release
    (that byte change is what makes browsers notice an update). */
 importScripts('./js/version.js');
-const BUILD_STAMP = '1.0.0';
+const BUILD_STAMP = '1.1.0';
 const CACHE = 'latte-motion-' + APP_VERSION;
 
 const ASSETS = [

@@ -4,7 +4,7 @@ A no-install, works-offline PWA that shows **the pitcher motion for latte art la
 Start the timer, hold your pitcher over the phone, and follow the moving target: when to hold a
 straight line, when to zigzag, when to pause, and when to lift and pull through.
 
-Current version: **v1.0.0**
+Current version: **v1.1.0**
 
 ## What it does
 
