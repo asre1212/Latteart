@@ -1,0 +1,25 @@
+{
+  "name": "Latte Motion — pitcher guide for latte art",
+  "short_name": "Latte Motion",
+  "description": "Timed pitcher-motion guides for 10 classic latte art designs: hold, zigzag, push and pull-through, second by second.",
+  "id": "/latte-motion/",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "fullscreen", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#120e0c",
+  "theme_color": "#171210",
+  "version": "1.0.0",
+  "categories": ["food", "education", "lifestyle"],
+  "icons": [
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Heart", "url": "./index.html#/d/heart" },
+    { "name": "Rosetta", "url": "./index.html#/d/rosetta" },
+    { "name": "Tulip", "url": "./index.html#/d/tulip-3" }
+  ]
+}
