@@ -15,7 +15,7 @@
     S = Object.assign(S, saved);
   } catch (e) { /* first run, or storage blocked */ }
   function saveSettings() {
-    try { localStorage.setItem('lm.settings', JSON.stringify(S)); } catch (e) {}
+    try { localStorage.setItem('lm.settings', JSON.stringify(S)); window.backup?.capture(); } catch (e) {}
     Cue.set(S);
   }
   Cue.set(S);

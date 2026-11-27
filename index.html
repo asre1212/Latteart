@@ -170,7 +170,7 @@
       <option value="8">8 seconds</option>
     </select>
   </div>
-  <div class="sheet-foot">
+  <div class="sheet-foot"><button type="button" class="ghost" id="auto-backup-open" onclick="window.backup?.open()">Auto Backup</button>
     <button class="ghost" id="installBtn" hidden>Install app</button>
     <button class="ghost" id="updateBtn">Check for updates</button>
     <p class="version-line">Latte Motion <span id="verText">v–</span> · works offline</p>
@@ -185,5 +185,9 @@
 <script src="./js/engine.js"></script>
 <script src="./js/audio.js"></script>
 <script src="./js/app.js"></script>
+<script src="./auto-backup.js"></script>
+<script>
+window.backup = TrackerBackup.setup({id: 'latteart', validate: x => x && !Array.isArray(x) && ['sound','voice','haptics','wake'].every(k => typeof x[k] === 'boolean') && [0.8,1,1.25].includes(x.speed) && [3,5,8].includes(x.countdown), read: () => JSON.parse(localStorage.getItem('lm.settings') || 'null'), write: payload => localStorage.setItem('lm.settings', JSON.stringify(payload))});
+</script>
 </body>
 </html>
